@@ -23,6 +23,7 @@ function Productlist(props) {
     setArray1,
     array1,
     Hello,
+    item,
   } = props;
 
   const [array, setArray] = useState([]);
@@ -37,8 +38,10 @@ function Productlist(props) {
   const result = ` ${day}/${month}/${year}`;
   let amt = price.split("").slice(1).join("") * 120;
 
+  const [quantity, setQuantity] = React.useState(0);
+
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.product.counter);
+  // const count = useSelector((state) => state.product.counter);
   // console.log(count,'count')
 
   // const incrementCount = (id) => {
@@ -47,10 +50,10 @@ function Productlist(props) {
   // const decrementCount = () => {
   //   const decrement = count > 0 ? setCount(count - 1) : 0;
   // };
-  const disableFunction = () => {
-    count === 0 ? setDisable1(true) : Hello(props);
-    click(count, props.price);
-  };
+  // const disableFunction = () => {
+  //   count === 0 ? setDisable1(true) : Hello(props);
+  //   click(count, props.price);
+  // };
   //  console.log(id)
   return (
     <>
@@ -76,19 +79,21 @@ function Productlist(props) {
                 type="button"
                 className="btn btn-outline-primary"
                 onClick={() => {
-                  dispatch(decrement(id));
+                  if (quantity > 0) {
+                    setQuantity(quantity - 1);
+                  }
                 }}
               >
                 -
               </button>
               <button type="button" className="btn btn-outline-primary">
-                {count}
+                {quantity}
               </button>
               <button
                 type="button"
                 className="btn btn-outline-primary"
                 onClick={() => {
-                  dispatch(increment(id));
+                  setQuantity(quantity + 1);
                 }}
               >
                 +
@@ -103,18 +108,18 @@ function Productlist(props) {
               Released on: {result}
             </p>
             <div className="row">
-              <a
-                href="#"
+              <button
                 className="btn btn-primary"
                 data-index={id}
                 onClick={() => {
                   // alert(array);
-                  dispatch(addToCart(id));
-                  disableFunction();
+                  dispatch(addToCart(item, quantity));
+                  // disableFunction();
                 }}
+                disabled={quantity < 1}
               >
                 Add to cart
-              </a>
+              </button>
             </div>
           </div>
         </div>

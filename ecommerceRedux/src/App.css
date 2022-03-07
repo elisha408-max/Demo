@@ -1,5 +1,5 @@
-*{
-  padding:0;
+* {
+  padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
@@ -12,41 +12,40 @@
   height: 40vmin;
   pointer-events: none;
 }
-.Navbar nav{
+.Navbar nav {
   padding: 0;
 }
-.navbar a{
+.navbar a {
   color: white;
 }
-.spacing{
+.spacing {
   padding-left: 20px;
 }
-.reactIcon{
+.reactIcon {
   margin-left: 30px;
   font-size: 24px;
 }
-.buttonStyling{
+.buttonStyling {
   padding: 10px 20px;
 }
-ul{
+ul {
   list-style: none;
 }
-.buttonStyling{
+.buttonStyling {
   margin-left: 90px;
 }
-.footer{
+.footer {
   margin-top: 195px;
 }
-.stockStyling{
+.stockStyling {
   margin-left: 112px;
 }
-.scrollButton{
+.scrollButton {
   position: absolute;
   right: 20px;
   background-color: red;
   color: white;
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -78,22 +77,20 @@ ul{
   }
 }
 
-
-
-.designForMobile{
+.designForMobile {
   position: absolute;
   top: 35px;
-  right: 28px;
+  right: 66px;
 }
 
-.Checkout form{
+.Checkout form {
   max-width: 800px;
   margin: 8rem auto;
   border-radius: 0.8rem;
-  background-color: #FFF;
+  background-color: #fff;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 7%), 0 4px 6px -2px rgb(0 0 0 / 5%);
-  padding: 20px  14px;
+  padding: 20px 14px;
 }
 .headerFormPage {
-  padding: 10px  4px;
+  padding: 10px 4px;
 }

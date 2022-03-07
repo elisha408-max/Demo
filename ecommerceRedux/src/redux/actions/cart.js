@@ -1,10 +1,11 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "../constants/index";
 
-export const addToCart = (itemId) => {
+export const addToCart = (item, quantity) => {
   return {
     type: ADD_TO_CART,
     payload: {
-      id: itemId,
+      item,
+      quantity
     },
   };
 };

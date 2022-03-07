@@ -28,14 +28,30 @@ const productReducer = (state = initialState, action) => {
         isLoading: false,
         products: action.payload,
       };
-    case ADD_TO_CART:
-      const item = state.products.find((prod) => prod.id === action.payload.id);
-      console.log(item); //   Check if  Item is in cart.
+
+    case ADD_TO_CART: {
+      let tmp_cart = state.cart;
+
+      const current_product = action.payload.item;
+      const quantity = action.payload.quantity;
+
+      // check if item in cart exists
+      const index = state.cart.findIndex(
+        (item) => item.id === current_product.id
+      );
+
+      if (index >= 0) {
+        tmp_cart[index] = { ...current_product, quantity };
+      } else {
+        tmp_cart.push({ ...current_product, quantity });
+      }
 
       return {
         ...state,
-        cart: [...state.cart, item],
+        cart: tmp_cart,
       };
+    }
+
     case REMOVE_FROM_CART:
       return {
         ...state,
@@ -45,6 +61,16 @@ const productReducer = (state = initialState, action) => {
       const item1 = state.products.find(
         (prod) => prod.id === action.payload.id
       );
+
+      const productID = action.payload.id;
+      const productIndex = state.products.findIndex(
+        (item) => item.id === productID
+      );
+
+      const tmp_products = state.products;
+
+      const tmp_product = tmp_product[productIndex];
+      // const ;
 
       return {
         ...state,

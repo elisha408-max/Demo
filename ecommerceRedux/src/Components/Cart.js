@@ -6,18 +6,19 @@ import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/actions/cart";
-import {  Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "./Form";
 // import { Form } from "formik";
 
 const Cart = (props) => {
   const { count, setCount, total1, setTotal1 } = props;
   const [show, setShow] = useState(false);
-
+  const navigate = useNavigate();
+  const [quantity, setQuantity] = React.useState(0);
   const [total, setTotal] = useState(0);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  var totalCartPrice = 0;
+  // var totalCartPrice = 0;
 
   // const deleteId = (id) => {
   //   let filteredItem = cartValue.filter((item) => item.id !== id);
@@ -26,13 +27,24 @@ const Cart = (props) => {
 
   //   // console.log(cardValue,'hjbljh')
   // };
-  const increment = (id) => {
-    setCount(parseInt(count) + 1);
-  };
+  // const increment = (id) => {
+  //   setCount(parseInt(count) + 1);
+  // };
   // console.log(count,'store')
   // console.log(store,'store')
   const dispatch = useDispatch();
-  const cartValue = useSelector((state) => state.product.cart);
+  const { cart: cartValue } = useSelector((state) => state.product);
+
+  const totalCartPrice = cartValue?.reduce(
+    (total,
+    (item) => {
+      console.log(item);
+      // const price = item.price.split("").slice(1).join("") * 120;
+
+      return total + item.quantity * 2;
+    }),
+    0
+  );
 
   return (
     <>
@@ -54,14 +66,8 @@ const Cart = (props) => {
         </Modal.Header>
         <Modal.Body>
           {cartValue.map((item, index) => {
-            let amt = item.price.split("").slice(1).join("") * 120;
-
-            let subAmt = amt * count[index];
-
-            let quantity = count;
-            let totalCartPrice = 0;
-
-            totalCartPrice = totalCartPrice + subAmt;
+            const subTotal =
+              item.price.split("").slice(1).join("") * 120 * item.quantity;
 
             return (
               <div className="row" key={index}>
@@ -77,7 +83,9 @@ const Cart = (props) => {
                     </div>
                     <div className="col-7">
                       <h5>{item.name}</h5>
-                      <p className="text-success">Rs.{subAmt}</p>
+                      <p className="text-success">Rs.{subTotal}</p>
+
+                      <p className="text-success">Quantity: {item.quantity}</p>
                     </div>
                   </div>
                 </div>
@@ -105,12 +113,14 @@ const Cart = (props) => {
                       -
                     </button>
                     <button type="button" className="btn btn-outline-success">
-                      {count[index]}
+                      {item.quantity}
                     </button>
                     <button
                       type="button"
                       className="btn btn-outline-success"
-                      onClick={() => increment(item.id)}
+                      onClick={() => {
+                        // increment();
+                      }}
                     >
                       +
                     </button>
@@ -123,13 +133,17 @@ const Cart = (props) => {
 
         <Modal.Footer>
           <div>
-            <p className="fw-bold">{`Total Amount:Rs.  ${total1}`} </p>
+            <p className="fw-bold">{`Total Amount:Rs.  ${totalCartPrice}`} </p>
 
-          
-           <Link to='/checkout'>
-           <Button variant="success">Checkout</Button>
-           </Link>
-           
+            <Button
+              disabled={cartValue?.length < 1 ? true : false}
+              onClick={() => {
+                navigate("/checkout");
+              }}
+              variant="success"
+            >
+              Checkout
+            </Button>
           </div>
         </Modal.Footer>
       </Modal>

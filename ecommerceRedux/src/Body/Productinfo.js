@@ -241,6 +241,7 @@ const Productinfo = (props) => {
           ) : (
             todo.map((item) => (
               <Productlist
+              item={item}
                 key={item.id}
                 name={item.name}
                 price={item.price}

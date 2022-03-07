@@ -41,65 +41,65 @@ const Form = () => {
               <h4 className=" ">Form Page</h4>
             </div>
 
-            <div class="mt-4">
-              <label for="name" class="form-label">
+            <div className="mt-4">
+              <label for="name" className="form-label">
                 Name
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="name"
                 name="Name"
                 onChange={formik.handleChange}
                 value={formik.values.Name}
               />
             </div>
-            <div class="mt-4">
-              <label for="billing" class="form-label">
+            <div className="mt-4">
+              <label for="billing" className="form-label">
                 Billing Address
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="billing"
                 name="Billing"
                 onChange={formik.handleChange}
                 value={formik.values.Billing}
               />
             </div>
-            <div class="mt-4">
-              <label for="delivery" class="form-label">
+            <div className="mt-4">
+              <label for="delivery" className="form-label">
                 Delivery Address
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="delivery"
                 name="Delivery"
                 onChange={formik.handleChange}
                 value={formik.values.Delivery}
               />
             </div>
-            <div class="mt-4">
-              <label for="telephone" class="form-label">
+            <div className="mt-4">
+              <label for="telephone" className="form-label">
                 Telephone Number
               </label>
               <input
                 type="number"
-                class="form-control"
+                className="form-control"
                 id="telephone"
                 name="Telephone"
                 onChange={formik.handleChange}
                 value={formik.values.Telephone}
               />
             </div>
-            <div class="mt-4">
-              <label for="date" class="form-label">
+            <div className="mt-4">
+              <label for="date" className="form-label">
                 Date
               </label>
               <input
                 type="date"
-                class="form-control"
+                className="form-control"
                 id="date"
                 name="Date"
                 onChange={formik.handleChange}
@@ -107,7 +107,7 @@ const Form = () => {
               />
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">
+            <button type="submit" className="btn btn-primary mt-3">
               Submit
             </button>
           </form>
